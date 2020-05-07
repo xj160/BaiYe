@@ -1,0 +1,84 @@
+
+.content-l,.aside{
+    /*position: relative;*/
+    float: left;
+}
+.aside{
+    position: relative;
+    margin-left: 40px;
+    width: 280px;
+
+}
+.author-title,.author-title .change,.author-title .change i{
+    font-size: 14px;
+    color: #747474;
+}
+.author-title .change{
+    float: right;
+}
+.author-title .change i{
+    margin-right: 5px;
+}
+.author-title:hover .change i,.author-title:hover .change{
+    color: #a7a7a7;
+}
+.recommended-authors{
+    margin-top: 20px;
+}
+.recommended-authors .author-img{
+    float: left;
+    margin-right: 10px;
+    width: 48px;
+    height: 48px;
+}
+
+.recommended-authors .author-img img{
+    height: 100%;
+    width: 100%;
+}
+.recommended-authors .authors .follow{
+    float: right;
+}
+.recommended-authors .authors{
+    padding-top: 10px;
+}
+.authors li {
+    padding-top: 10px;
+    overflow: hidden;
+}
+.authors li:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.authors li .follow{
+    margin-top: 5px;
+}
+.authors li .follow,.authors li .follow i{
+    color:#7fb80e;
+    font-size: 13px;
+}
+.authors .author-name{
+    font-size: 14px;
+    display: block;
+    padding-top: 5px;
+}
+.authors p{
+    font-size: 12px;
+    margin-top: 2px;
+    color: #969696;
+}
+/* .authors .follow:hover,.authors .follow:hover i{
+    font-size: 14px;
+}*/
+.find-more{
+    display: block;
+    height:35px;
+    width: 100%;
+    color: #787878;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 20px;
+}

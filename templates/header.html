@@ -1,0 +1,65 @@
+{%load static%}
+<header>
+    <div class="inner-header">
+        <a href="/"><div class="logo"></div></a>
+        <ul class="nav">
+            <li class="tab"> <a href="#" class="this">发现</a></li>
+            <li class="tab"><a href="#">专题</a></li>
+            <li class="tab"><a href="#">连载</a></li>
+            <li class="tab"> <a href="#">关注</a></li>
+            <li class="tab"> <a href="#">消息</a></li>
+            <li class="seach-bar">
+                <form>
+                    <input type="index" name="" class="seach-text" placeholder="搜索" />
+                    <span class="seach-btn"><a class="seach-icon layui-icon layui-icon-search"></a></span>
+                </form>
+            </li>
+        </ul>
+        {% if not request.user.is_active %}
+        <a href="javascript:void(0)" id='login' >登录</a>
+        {% else %}
+        <div>
+           <a href="" class="info"><img src="{{ request.user.icon.url }}" class="layui-nav-img">{{ request.user.nick_name }}</a>
+
+            <a href="#" class="write-btn"><svg t="1583905707356" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="622" width="30" height="30"><path d="M896 864a32 32 0 0 1 0 64H128a32 32 0 0 1 0-64z m-60.16-733.621l15.093 15.093c45.867 45.835 45.867 120.16 0 166.005L418.795 743.34a160.192 160.192 0 0 1-78.123 42.986l-152.245 34.198c-23.84 5.365-44.662-16.854-37.75-40.288l43.339-146.88a160.043 160.043 0 0 1 40.373-67.926l435.328-435.05c45.867-45.835 120.246-45.835 166.112 0zM636.32 254.304L279.68 610.709a96.021 96.021 0 0 0-24.213 40.747l-27.947 94.656 99.093-22.261a96.117 96.117 0 0 0 46.87-25.782l353.45-353.226-90.602-90.539z m78.699-78.656l-33.398 33.387 90.603 90.538 33.387-33.376a53.333 53.333 0 0 0 0-75.456l-15.094-15.093a53.408 53.408 0 0 0-75.498 0z" p-id="623" fill="#dec674"></path></svg></a>
+        </div>
+        {% endif %}
+
+    </div>
+</header>
+{% if not request.user.is_active %}
+<div style="position: fixed;top: 0;left: 0;background: rgba(0,0,0,0.5);height: 100%;width: 100%;z-index: 200;" id="login-fram" class="hide">
+    <div class="login-box">
+        <div class="close-btn"><i class="layui-icon close-fram">&#x1006;</i></div>
+        <div class="hide" id="phone-login">
+{#                phone-login login-content#}
+            <p class="login-title">  短信验证登录</p>
+{#                <p class="login-tip">验证即登录，未注册将自动创建百叶窗帐号</p>#}
+            <form action="#">
+                <p class="error-tip"></p>
+                <div class="phone-text"><input type="text" placeholder="请输入手机号" class="input-text "></div>
+                <div class="verification "><input type="text" placeholder="验证码" class="input-text"> <button>发送验证码</button></div>
+                <input type="submit" value="登录" class="login-btn">
+            </form>
+            <div style="overflow: hidden">
+                <a href="javscript:void(0)" class="link-btn pass-link">密码登录</a>
+                <a href="/user/register" class="link-btn reg-link">立即注册</a>
+            </div>
+        </div>
+        <div class="login-content" id="pass-login">
+{#                phone-login login-content#}
+            <p class="login-title">  密码验证登录</p>
+            <form action="#">
+                <p class="error-tip"></p>
+                <div class="phone-text"><input type="text" placeholder="手机号/邮箱/百叶账号" class="input-text "></div>
+                <div><input type="text" placeholder="密码" class="input-text"></div>
+                <input type="submit" value="登录" class="login-btn">
+            </form>
+            <div style="overflow: hidden">
+                <a href="javscript:void(0)" class="link-btn phone-link">短信快捷登录</a>
+                <a href="/user/register" class="link-btn reg-link">立即注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

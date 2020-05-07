@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "609632",
+      "name": "文件夹",
+      "font_class": "wenjianjiafolder83",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "1312748",
+      "name": "发布",
+      "font_class": "fabu",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    }
+  ]
+}

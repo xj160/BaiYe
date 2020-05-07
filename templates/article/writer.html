@@ -1,0 +1,499 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>百叶窗-写文章</title>
+    <script type="text/javascript" src="{% static 'utils/wangEditor-3.1.1/release/wangEditor.min.js' %}"></script>
+    <link rel="shortcut icon" href="{% static 'images/BaiYe.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'utils/layui-v2.5.6/layui/css/layui.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/writer_style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jQuery/jquery-3.4.1.min.js' %}"></script>
+
+   <script type="text/javascript" src="{% static 'utils/layui-v2.5.6/layui/layui.js' %}"></script>
+
+</head>
+<body>
+    <div id="root" style="width: 100%;height: 100%;max-width: 100vw;max-height: 100vh">
+		<div class="ant-row _1gp6t">
+			<div class="ant-col ant-col-4 _2v5v5">
+				<div class="_3zibT">
+					<a href="https://www.jianshu.com">回首页</a>
+				</div>
+				<div class="_1iZMb">
+					<div class="_33Zlg">
+						<i class="fa layui-icon">&#xe654;</i>
+						<span>新建文集</span>
+					</div>
+					<div class="_2G97m">
+						<form class="M8J6Q _1mU5v" method="post" action="/article/create_anth/">
+							<input type="text" placeholder="请输入文集名..." name="name" class="_1CtV4">
+							<button type="submit" class="dwU8Q _3zXcJ _3QfkW"><span>提 交</span></button>
+							<button type="button" class="vIzwB _3zXcJ"><span>取 消</span></button>
+						</form>
+					</div></div>
+					<ul class="_3MbJ4 _3t059">
+                        {% for anth in anths %}
+                            {% if anth == edit_article.anthology %}
+                                <li class="_3DM7w _31PCv">
+                                    <div class="_3P4JX _2VLy-">
+                                        <i class="fa layui-icon layui-icon-set-fill"></i>
+                                        <span>
+                                            <ul class="_2V8zt _3FcHm _2w9pn">
+                                                <li class="_2po2r cRfUr" title="">
+                                                    <span class=""><i class="fa layui-icon">&#xe642;</i>修改文集</span>
+                                                </li>
+                                                <li class="_2po2r cRfUr" title=""><span class=""><i class="fa layui-icon">&#xe640;</i>删除文集</span></li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                    <span>{{ anth.name }}</span>
+                                </li>
+
+                            {% else %}
+                                <li class="_3DM7w" style="">
+                                    <span>{{ anth.name }}</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                     </ul>
+
+				</div>
+				<div class="ant-col ant-col-20" style="height: 100%;">
+					<div class="ant-col ant-col-8 rQQG7">
+						<div class="_3revO _2mnPN">
+							<div class="_3br9T">
+								<div>
+									<div class="_1GsW5">
+										<i class="fa layui-icon">&#xe61f;</i>
+										<span> 新建文章</span>
+									</div>
+									<ul class="_2TxA-">
+                                        {% for article in articles %}
+                                            {% if edit_article == article %}
+                                                <li class="_25Ilv _33nt7" >
+                                                    <i class="{% if article.is_public %}_13kgp _2m93u{% else %}_13kgp{% endif %}"></i>
+                                                    <div class="_3P4JX poOXI">
+                                                        <i class="fa layui-icon">&#xe614;</i>
+                                                        <span>
+{#                                                            _2V8zt _3FcHm _2w9pn#}
+                                                            {#  _2V8zt _3FcHm NvfK4 _2w9pn#}
+                                                            <ul class="_2V8zt _3FcHm _2w9pn">
+{#                                                                 _2V8zt _3FcHm _2w9pn#}
+                                                                {% if edit_article.is_public %}
+                                                                <li class="_2po2r cRfUr" title="">
+                                                                    <span class=""><i class="fa fa-share _22XWG baiye-font" >&#xe62b;</i>设为私有</span>
+                                                                </li>
+                                                                {% else %}
+                                                                <li class="_2po2r cRfUr" title="">
+                                                                    <span class=""><i class="fa fa-share _22XWG baiye-font" >&#xe62b;</i>直接发布</span>
+                                                                </li>
+                                                                {% endif %}
+                                                                <li class="_3nZXj _2_WAp _3df2u _2po2r cRfUr" title="">
+                                                                    <span class="" >
+                                                                        <i class="fa fa-folder-open _22XWG baiye-font" >&#xe746;</i>移动文章
+                                                                        <div class="_3x4X_">
+                                                                            <ul class="_2KzJx oGKRI  _2w9pn">
+                                                                                {% for anth in anths %}
+                                                                                    {% if not anth == edit_article.anthology  %}
+                                                                                        <li class="_2po2r cRfUr" >
+                                                                                            <span class="">{{ anth.name }}</span>
+                                                                                        </li>
+                                                                                    {% endif %}
+                                                                                {% endfor %}
+                                                                            </ul>
+                                                                        </div>
+                                                                    </span>
+                                                                </li>
+
+                                                                <li class="_2po2r cRfUr" title="">
+                                                                    <span class=""><i class="fa fa-trash-o _22XWG layui-icon">&#xe640;</i>删除文章</span>
+                                                                </li>
+
+                                                            </ul>
+                                                        </span>
+                                                    </div>
+                                                    <span class="NariC">{{ article.title }}</span>
+                                                    <span class="hLzJv"></span>
+                                                    <span class="_29C-V">字数:0</span>
+                                                </li>
+                                            {% else %}
+                                                <li class="_25Ilv">
+                                                    <i class="{% if article.is_public %}_13kgp _2m93u{% else %}_13kgp{% endif %}"></i>
+                                                    <span class="NariC">{{ article.title }}</span>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+
+									</ul>
+{#									<div class="_2cVn3">#}
+{#										<i class="fa layui-icon">&#xe654;</i><span> 在下方新建文章</span>#}
+{#									</div>#}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ant-col ant-col-16 _1Yy97">
+						<div class="_2mnPN">
+							<div class="_3br9T">
+								<div class="_3DuaW" autofocus="" tabindex="-1">
+									<p class="_3-3KB">已保存</p>
+									<div class="_1WI52" tabindex="-1">
+										<input type="text" class="_24i7u" value="{{ edit_article.title }}">
+										<div id="toolbar" class="toolbar"></div>
+									    <div id="editor" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+                                            {{ edit_article.content|safe }}
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+    <script>
+        set_wind = $(" <div><div class=\"NVdZF\"><div class=\"_20JYe\"></div><div role=\"dialog\" tabindex=\"-1\" class=\"_23VW8\"><div role=\"document\" class=\"_26mjB HSpeJ _3cgNz cjahm\" style=\"width: 312px;\"><div class=\"_2tIvb\"><div class=\"_1KgC3\"><div class=\"-K8Re\">请输入新文集名 </div></div><div class=\"PWCkH\"><div class=\"HhIYk\"><div class=\"_38pIX\"><input type=\"text\" value=\"{{ edit_article.anthology.name }}\"></div><div class=\"_2BmdS\"><button type=\"button\" class=\"_3zXcJ\" ><span>取 消</span></button><button type=\"button\" class=\"_3zXcJ _3QfkW\" ><span>确 认</span></button></div></div></div></div></div></div></div></div>")
+
+        del_wind = $("<div><div class=\"NVdZF\"><div class=\"_20JYe\"></div><div role=\"dialog\" tabindex=\"-1\" class=\"_23VW8\"><div role=\"document\" class=\"_26mjB _3cgNz cjahm\" style=\"width: 312px;\"><div class=\"_2tIvb\"><div class=\"PWCkH\"><div class=\"HhIYk\"><div class=\"_37SYn\">确认删除文集《{{ edit_article.anthology.name }}》，文章将被移动到回收站。</div><div class=\"_2BmdS\"><button type=\"button\" class=\"_3zXcJ\"><span>取 消</span></button><button type=\"button\" class=\"_3zXcJ _3QfkW\"><span>确 认</span></button></div></div></div></div></div></div></div></div>")
+        edit_article_id = {{ edit_article.id }}
+        edit_anth_id = {{  edit_article.anthology.id  }}
+        $('._31PCv ._2po2r:first-child').click(function(e){
+            $('._3P4JX._2VLy- span ul').hide()
+            if(!$('body')[0].contains(set_wind[0])){
+                 $('body').append(set_wind)
+                set_wind.find('._2BmdS button:first-child').click(function (e) {
+                    set_wind.remove()
+                })
+                set_wind.find('._2BmdS button:last-child').click(function (e) {
+                    post_date = {
+                       'name':set_wind.find('._38pIX input').val()
+                    }
+                    $.ajax({
+                        url:"/article/update_name/",
+                        type:'post',
+                        'Content-Type':'application/json',
+                        data:post_date,
+                        dataType:'json',
+                        success:function(result) {
+                            if(result['status'] == 1){
+                                $('._31PCv>span')[0].innerHTML = post_date['name']
+                            }else {
+                                alert('设置文集错误+，请刷新页面再试！')
+                            }
+                            set_wind.remove()
+                        },
+                        error:function (msg) {
+                            alert(msg)
+                            set_wind.remove()
+                        }
+                    })
+                })
+            }
+            e.stopPropagation();
+        })
+        $('._31PCv ._2po2r:last-child').click(function(e){
+           $('._3P4JX._2VLy- span ul').hide()
+           if(!$('body')[0].contains(del_wind[0])){
+                $('body').append(del_wind)
+                del_wind.find('._2BmdS button:first-child').click(function (e) {
+                    del_wind.remove()
+                })
+                del_wind.find('._2BmdS button:last-child').click(function (e) {
+                    $.ajax({
+                        url:"/article/del_anth/",
+                        type:'post',
+                        'Content-Type':'application/json',
+                        dataType:'json',
+                        success:function(result) {
+                            if(result['status'] == 1){
+                                window.location.replace('/article/writer/')
+                            }else {
+                                alert('删除文集错误，请刷新页面再试！')
+                            }
+                            set_wind.remove()
+                        },
+                        error:function (msg) {
+                            alert(msg)
+                            set_wind.remove()
+                        }
+                    })
+
+                })
+            }
+            e.stopPropagation();
+        })
+        anths_id = [{% for anth in anths %}{{ anth.id }},{% endfor %}]
+        article_id = [{% for article in articles %}{{ article.id }},{% endfor %}]
+        $('._24i7u').change(function (e) {
+            post_date = {
+               'id':edit_article_id,
+                'title':this.value
+            }
+            $.ajax({
+                data:post_date,
+                url:"/article/set_article_title/",
+                type:'post',
+                'Content-Type':'application/json',
+                dataType:'json',
+                success:function(result) {
+                    if(result['status'] == 1){
+                        $('._25Ilv._33nt7 .NariC').html(post_date.title)
+                    }else {
+                        alert('请求出错，请刷新页面再试！')
+                    }
+                },
+                error:function (msg) {
+                    console.log(msg)
+                }
+            })
+
+
+        })
+    </script>
+<script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#toolbar','#editor')
+        // 或者 var editor = new E( document.getElementById('editor') )
+        editor.customConfig.uploadImgServer = '/article/upload/'
+        editor.customConfig.uploadFileName = 'file'
+        editor.customConfig.uploadImgMaxLength = 1
+        editor.customConfig.menus = [
+            'head',  // 标题
+            'bold',  // 粗体
+            'fontSize',  // 字号
+            'fontName',  // 字体
+            'italic',  // 斜体
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'backColor',  // 背景颜色
+            'link',  // 插入链接
+            'list',  // 列表
+            'justify',  // 对齐方式
+            'quote',  // 引用
+            'emoticon',  // 表情
+            'image',  // 插入图片
+            'table',  // 表格
+            'code',  // 插入代码
+            'undo',  // 撤销
+            'redo'  // 重复
+        ]
+        editor.customConfig.onchange = function (html) {
+        // html 即变化之后的内容
+            $('._3DuaW ._3-3KB').html('正在保存')
+            post_date = {
+               'id':edit_article_id,
+                'content':html
+            }
+            $.ajax({
+                data:post_date,
+                url:"/article/save_article/",
+                type:'post',
+                'Content-Type':'application/json',
+                dataType:'json',
+                success:function(result) {
+                    if(result['status'] == 1){
+                        {#window.location.replace('/article/save_article/')#}
+                        $('._3DuaW ._3-3KB').html('已保存')
+                    }else {
+                        alert('请求出错，请刷新页面再试！')
+                    }
+                },
+                error:function (msg) {
+                    console.log(msg)
+                }
+            })
+        }
+        editor.customConfig.onchangeTimeout = 2000 // 单位 ms
+
+        editor.create()
+        $('._3P4JX._2VLy- .fa.layui-icon-set-fill').click(function(e){
+            el = $('._3P4JX._2VLy- span ul')
+            if(el.is(':hidden')){
+                el.show()
+                $(document).one("click", function(){
+                    el.hide()
+                });
+            }else{
+                el.hide()
+            }
+
+            e.stopPropagation();
+
+        })
+        $('._25Ilv .poOXI i:first-child').click(function(e){
+            el = $('._33nt7 ._3P4JX ul._2V8zt')
+            if(el.is(':hidden')){
+                el.show()
+                $(document).one("click", function(){
+                    el.hide()
+                });
+            }else{
+                el.hide()
+            }
+
+            e.stopPropagation();
+
+        })
+
+        $('._3nZXj._2_WAp._3df2u._2po2r.cRfUr').hover(function(){
+            $('._25Ilv .poOXI li._3nZXj ul').show()
+        },function(){
+            $('._25Ilv .poOXI li._3nZXj ul').hide()
+        })
+        $('._1iZMb ._33Zlg').click(function () {
+            $('._1iZMb ._2G97m form')[0].className = 'M8J6Q _2a1Rp'
+        })
+        $('._1iZMb ._2G97m form ._3zXcJ+._3zXcJ').click(function () {
+            $('._1iZMb ._2G97m form')[0].className = 'M8J6Q _1mU5v'
+        })
+        $('._1GsW5').click(function () {
+            $.ajax({
+                url:"/article/create_article/",
+                type:'post',
+                'Content-Type':'application/json',
+                dataType:'json',
+                success:function(result) {
+                    if(result['status'] == 1){
+                        window.location.replace('/article/writer/')
+                    }else {
+                        alert('新建文章错误，请刷新页面再试！')
+                    }
+                },
+                error:function (msg) {
+                    console.log(msg)
+                }
+            })
+        })
+    $('._3DM7w').click(function () {
+        ind = $('._3DM7w').index(this)
+        post_date = {
+           'id':anths_id[ind]
+        }
+        $.ajax({
+            data:post_date,
+            url:"/article/change_anth/",
+            type:'post',
+            'Content-Type':'application/json',
+            dataType:'json',
+            success:function(result) {
+                if(result['status'] == 1){
+                    window.location.replace('/article/writer/')
+                }else {
+                    alert('请求出错，请刷新页面再试！')
+                }
+            },
+            error:function (msg) {
+                console.log(msg)
+            }
+        })
+
+    })
+    $('._25Ilv').click(function (e) {
+        ind = $('._25Ilv').index(this)
+        post_date = {
+           'id':article_id[ind]
+        }
+        $.ajax({
+            data:post_date,
+            url:"/article/change_article/",
+            type:'post',
+            'Content-Type':'application/json',
+            dataType:'json',
+            success:function(result) {
+                if(result['status'] == 1){
+                    window.location.replace('/article/writer/')
+                }else {
+                    alert('请求出错，请刷新页面再试！')
+                }
+            },
+            error:function (msg) {
+                console.log(msg)
+            }
+        })
+        e.stopPropagation();
+    })
+    $('._33nt7 ._3P4JX ul._2V8zt>._2po2r:first-child').click(function(e){
+
+
+        post_date = {
+           'id':edit_article_id
+        }
+        $.ajax({
+            data:post_date,
+            url:"/article/change_public/",
+            type:'post',
+            'Content-Type':'application/json',
+            dataType:'json',
+            success:function(result) {
+                if(result['status'] == 1){
+                    window.location.replace('/article/writer/')
+                }else {
+                    alert('请求出错，请刷新页面再试！')
+                }
+            },
+            error:function (msg) {
+                console.log(msg)
+            }
+        })
+
+        e.stopPropagation();
+    })
+    $('._33nt7 ._3P4JX ul._2V8zt>._2po2r:last-child').click(function(e){
+
+
+        post_date = {
+           'id':edit_article_id
+        }
+        $.ajax({
+            data:post_date,
+            url:"/article/del_article/",
+            type:'post',
+            'Content-Type':'application/json',
+            dataType:'json',
+            success:function(result) {
+                if(result['status'] == 1){
+                    window.location.replace('/article/writer/')
+                }else {
+                    alert('请求出错，请刷新页面再试！')
+                }
+            },
+            error:function (msg) {
+                console.log(msg)
+            }
+        })
+
+        e.stopPropagation();
+    })
+    $('._25Ilv .poOXI li._3nZXj ul li').click(function (e) {
+        ind = $('._25Ilv .poOXI li._3nZXj ul li').index(this)
+        other_anths = anths_id.concat()
+        other_anths.splice(other_anths.indexOf(edit_anth_id),1)
+        anth_id = other_anths[ind]
+        post_date = {
+           'anth_id':anth_id,
+            'article_id':edit_article_id
+        }
+        $.ajax({
+            data:post_date,
+            url:"/article/move_article/",
+            type:'post',
+            'Content-Type':'application/json',
+            dataType:'json',
+            success:function(result) {
+                if(result['status'] == 1){
+                    window.location.replace('/article/writer/')
+                }else {
+                    alert('请求出错，请刷新页面再试！')
+                }
+            },
+            error:function (msg) {
+                console.log(msg)
+            }
+        })
+        e.stopPropagation()
+    })
+</script>
+</body>
+</html>

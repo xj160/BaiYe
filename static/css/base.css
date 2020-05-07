@@ -1,0 +1,313 @@
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+  background: #fff;
+  color: #1a1a1a
+}
+.clear{
+    clear: both;
+}
+
+.logo{
+    /*display: inline-block;*/
+    /*color: #7fb80e;*/
+    /*font-size: 30px;*/
+    /*font-family: cursive;*/
+    /*content: '百叶窗';*/
+
+    background: url("/static/images/BYC_logo.png") no-repeat center;
+    background-size: 90px 34px;
+    margin-right: 20px;
+    width: 90px;
+    height: 52px;
+    float: left;
+    /*line-height: 52px;*/
+
+}
+
+
+
+header{
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+  position: fixed;
+  width: 100%;
+  min-width: 1000px;
+  left: 0;
+  top: 0;
+  height: 52px;
+  z-index: 100;
+}
+.inner-header{
+  width:1000px;
+  height: 52px;
+  margin:0 auto 0 auto;
+  /*line-height: 52px;*/
+
+
+}
+
+.nav,.nav li{
+    float: left;
+}
+.nav .tab{
+    display: block;
+
+    margin-right: 10px;
+}
+.nav .tab a{
+    font-size: 17px;
+    padding: 15px;
+    color: #333;
+    display: inline-block;
+    font-family: Georgia,Times New Roman,Times,Songti SC,serif;
+}
+header:after{
+    clear: both;
+}
+ .seach-bar{
+    margin-left:15px;
+    padding: 5px
+}
+.seach-text{
+    border-radius: 40px;
+    width: 240px;
+    height: 38px;
+    border: 1px solid #eee;
+    padding: 0 40px 0 20px;
+
+}
+
+.seach-bar .seach-btn{
+    margin-left: -36px;
+    /*padding-top: 3px;*/
+    display: inline-block;
+    vertical-align:text-top;
+
+
+}
+.seach-btn .seach-icon{
+    padding: 0 0 0 7px;
+    display: inline-block;
+    cursor:pointer;
+    font-size: 18px;
+    color:#969696;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -7px;
+}
+.inputing .seach-text{
+    width: 280px;
+}
+.inputing .seach-icon{
+    background: #8e8e8e;
+    color: #f8f8f8;
+    border-radius: 50%;
+}
+.inputing{
+    display: inline-block;
+}
+.nav .tab:hover a{
+    padding-bottom: 0;
+    color: #7fb80e;
+}
+.nav .tab:hover a:after{
+    display: block;
+    width: 30px;
+    height: 2px;
+    content: "";
+    /*border-bottom: 2px solid #7fb80e;*/
+    position: relative;
+    background: #7fb80e;
+    margin: 15px auto 0 auto;
+}
+.this{
+    color: #7fb80e !important;
+}
+header #login{
+    float: right;
+    margin: 18px 10px 10px;
+    font-size: 15px;
+    font-family: Georgia,Times New Roman,Times,Songti SC,serif;
+    color: #969696;
+    /*line-height:1.42857;*/
+
+}
+header .write-btn{
+    float: right;
+    margin: 12px 0 0 10px;
+}
+header .info{
+    display: block;
+    float: right;
+    /*height: 52px;*/
+    /*margin-top: 20px;*/
+    margin: 10px 10px 0px 0px;
+}
+.record{
+    /*box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(0,0,0,.7);*/
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    height: 120px;
+    width: 280px;
+    background:#f6f6f6;
+    /*#99CCFF;*/
+    border-radius: 4px;
+    padding:10px 5px 5px 5px;
+    color: #747474;
+    line-height: 23px;
+    display: table-cell;
+    vertical-align:middle;
+}
+.record .record-content{
+    font-size: 12px;
+    margin-bottom: 10px;
+    /*height: 85px;        */
+}
+.record .record-author{
+    float: right;
+    font-size: 10px;
+    color: #747474;
+
+}
+.record .record-author:hover{
+    color: #b4b4b4;
+}
+.box-title{
+    padding:5px;
+    background: #66CCCC;
+}
+.box-title a{
+    color: #333;
+    font-size: 10px;
+
+}
+.record-refresh{
+    float: right;
+}
+.login-box{
+    width: 366px;
+    /*height: 200px;*/
+    background: #ffffff;
+    position: relative;
+    top: 150px;
+    left: 50%;
+    margin-left:-183px ;
+    /*margin-top: -200px;*/
+}
+.close-btn{
+    overflow: hidden;
+    padding: 10px 10px 5px 0;
+
+}
+.close-btn i{
+    float: right;
+    clear: both;
+     font-size: 18px;
+
+}
+.close-btn i:hover{
+    font-weight: 800;
+}
+.login-box .login-title{
+    /*line-height: 10px;*/
+    background: url("/static/images/BYC_login.png") no-repeat left;
+    height: 32px;
+    background-size: 99px 32px;
+    padding-left: 99px;
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+.login-box form{
+    /*margin-left: 32px;*/
+    margin-top: 5px;
+}
+.login-content{
+    /*margin-left: 32px;*/
+    /*width: 302px;*/
+    padding: 0 32px 20px 32px;
+}
+.login-tip{
+    color: #999;
+    font-size: 12px;
+}
+.error-tip{
+    display: block;
+    min-height: 24px;
+    height: auto;
+    padding: 8px 0 2px;
+    line-height: 14px;
+    font-size: 12px;
+    color: #fc4343;
+}
+.input-text{
+    height: 42px;
+    width: 302px;
+    padding: 10px 8px;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #ddd;
+}
+.phone-text{
+    margin-bottom: 15px;
+}
+.verification .input-text{
+    width: 186px;
+}
+.verification button{
+        display: block;
+    padding: 0;
+    float: right;
+    height: 40px;
+    width: 105px;
+    font-size: 12px;
+    transition: .3s;
+    color: #7fb80e;
+    /*color: #2e82ff;*/
+    border: 1px solid #dedede;
+    background-color: #fff;
+    cursor: default;
+    border-radius: 0;
+}
+.login-btn{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 300px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #fff;
+    /*background: #3f89ec;*/
+    background: #7fb80e;
+    border: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    margin: 10px 0;
+}
+a.link-btn{
+    color: #7fb80e;
+    font-size: 14px;
+}
+.reg-link{
+    float: right;
+}
+.phone-link,.pass-link{
+    float: left;
+}

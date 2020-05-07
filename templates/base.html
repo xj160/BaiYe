@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/BaiYe.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'utils/layui-v2.5.6/layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {%block css%}{%endblock%}
+   <script type="text/javascript" src="{% static 'utils/layui-v2.5.6/layui/layui.js' %}"></script>
+	{%block js%}{%endblock%}
+    <script src="{% static 'js/base.js' %}"></script>
+
+
+</head>
+<body>
+    {%include 'header.html'%}
+
+	{%block content%}{%endblock%}
+
+
+
+</body>
+</html>

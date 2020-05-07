@@ -1,0 +1,84 @@
+{%extends "base.html"%}
+{% load static %}
+{% block title %}{{ article.title }}{% endblock %}
+{%block css %}
+    <link rel="stylesheet" href="{% static 'css/article/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aside.css' %}">
+    <script type="text/javascript" src="{% static 'utils/wangEditor-3.1.1/release/wangEditor.min.js' %}"></script>
+
+{% endblock %}
+{%block content%}
+<div id='wrapper'>
+    <main>
+        <div class="content-l">
+            <h1 class="title">{{ article.title }}</h1>
+            <div class="rEsl9f">
+                <div class="_2mYfmT">
+                    <a class="_1OhGeD" href="/u/a93aeb6042a0" target="_blank" rel="noopener noreferrer">
+                        <img class="_13D2Eh" src="{{ article.anthology.user.icon.url }}" alt="">
+                    </a><div style="margin-left: 8px;">
+                    <div class="_3U4Smb">
+                        <span class="FxYr8x">
+                            <a class="_1OhGeD" href="/u/a93aeb6042a0" target="_blank" rel="noopener noreferrer">
+                                {{ article.anthology.user.nick_name }}
+                            </a>
+                        </span>
+                        <button data-locale="zh-CN" type="button" class="_3kba3h _1OyPqC _3Mi9q9 _34692-">
+                            <span>关注</span>
+                        </button>
+                    </div>
+                    <div class="s-dsoj">
+                        <time datetime="2019-05-16T23:01:18.000Z">2019-05-16</time>
+                        <span>字数 185</span>
+                        <span>阅读 {{ article.click_num }}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="content">
+                {{ article.content|safe }}
+            </div>
+            <div class="set">
+{#                <span><i class="layui-icon">&#xe6c6;</i>{{ article.love_num }}</span>#}
+{#                <span><i class="layui-icon">&#xe6c5;</i></span>#}
+                <div class="_18vaTa">
+                    <div class="_3BUZPB">
+                        <div class="_2Bo4Th" role="button" tabindex="-1" aria-label="给文章点赞">
+                            <i class="layui-icon">&#xe6c6;</i>
+                        </div>
+                        <span class="_1LOh_5" role="button" tabindex="-1" aria-label="查看点赞列表">{{ article.love_num }}人点赞</span>
+                    </div>
+                    <div class="_3BUZPB">
+                        <div class="_2Bo4Th" role="button" tabindex="-1">
+                            <i class="layui-icon">&#xe6c5;</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="editor"></div>
+        </div>
+
+        {% include 'aside.html' %}
+    </main>
+
+</div>
+    <script>
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        // 或者 var editor = new E( document.getElementById('editor') )
+         editor.customConfig.menus = [
+            'bold',  // 粗体
+            'fontName',  // 字体
+            'italic',  // 斜体
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'backColor',  // 背景颜色
+            'link',  // 插入链接
+            'emoticon',  // 表情
+            'code',  // 插入代码
+        ]
+        editor.create()
+    </script>
+{%endblock%}

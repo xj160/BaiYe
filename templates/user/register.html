@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/reg_style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jQuery/jquery-3.4.1.min.js' %}"></script>
+{#    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>#}
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="/" class="logo-link"><div class="logo"></div></a>
+        <div class="main">
+{#            <div class="reg_picture"></div>#}
+            <div class="reg-content">
+                <div class="welcome">欢迎加入百叶窗</div>
+                <form id="reg_form" onsubmit="return false">
+                      <p class="error-tip" id="name_err">{{ err_msg.nick_name |striptags}}</p>
+                    <div>昵&nbsp;&nbsp;&nbsp;&nbsp;称： {{ obj.nick_name }}</div>
+                    <p class="error-tip" id="phone_err">{{ err_msg.phone |striptags}}</p>
+                    <div>手机号： {{ obj.phone }}</div>
+                    <p class="error-tip" id="pwd_err">{{ err_msg.password |striptags}}</p>
+                    <div>密&nbsp;&nbsp;&nbsp;&nbsp;码： {{ obj.password }}</div>
+                    <p class="error-tip" id="ver_err">{{ err_msg.ver_code |striptags }}</p>
+                    <div class="verification ">验证码： {{ obj.ver_code }} <button type="button" >发送验证码</button></div>
+                    <p class="error-tip" id="sub_err"></p>
+                    <input type="submit" class="register" value="注册">
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="{% static 'js/register.js' %}"></script>
+
+</body>
+</html>
